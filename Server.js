@@ -6,22 +6,25 @@ var PORTONE = 7000;
 var PORTTWO = 7500;
 
 // Create a generic function to handle requests and responses
-function handleRequestONE(request, response)
-function handleRequestONE(request, response) {
-
-  // Send the below string to the client when the user visits the PORT URL
-  response.end("tell the user something good about themselves: " + request.url);
+function handleRequestOne(request, response) {
+  response.end("You're a JavaScript mastermind!");
 }
-  response.end("tell the user something bad about themselves: " + request.url);
+function handleRequestTwo(request, response) {
+  response.end("JavaScript must not be your forte.");
+}
 
-
-// Use the Node HTTP package to create our server.
-// Pass the handleRequest function to empower it with functionality.
-var server = http.createServer(handleRequest);
+  // Create our servers
+var serverOne = http.createServer(handleRequestOne);
+var serverTwo = http.createServer(handleRequestTwo);
 
 // Start our server so that it can begin listening to client requests.
-server.listen(PORT, function() {
+serverOne .listen(PORTONE, function() {
 
   // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+  console.log("Server listening on: http://localhost:" + PORTONE);
+});
+serverTwo .listen(PORTTWO, function() {
+
+  // Log (server-side) when our server has started
+  console.log("Server listening on: http://localhost:" + PORTTWO);
 });
